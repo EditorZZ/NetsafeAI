@@ -157,6 +157,7 @@ RUN pip3 install --no-cache-dir uv && \
 # copy embedding weight from build
 # RUN mkdir -p /root/.cache/chroma/onnx_models/all-MiniLM-L6-v2
 # COPY --from=build /app/onnx /root/.cache/chroma/onnx_models/all-MiniLM-L6-v2/onnx
+# Guido
 
 # copy built frontend files
 COPY --chown=$UID:$GID --from=build /app/build /app/build

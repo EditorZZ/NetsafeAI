@@ -14,8 +14,8 @@
 	export let getModels: Function;
 
 	// General
-	let themes = ['light'];
-	let selectedTheme = 'light';
+	let themes = ['dark', 'light', 'oled-dark'];
+	let selectedTheme = 'system';
 
 	let languages: Awaited<ReturnType<typeof getLanguages>> = [];
 	let lang = $i18n.language;

@@ -284,7 +284,7 @@
 		{#if $user?.role === 'admin' || ($user?.permissions.chat?.controls ?? true)}
 			<div class="mt-2 space-y-3 pr-1.5">
 				<div class="flex justify-between items-center text-sm">
-					<div class="  font-medium">{$i18n.t('Advanced Parameters')}</div>
+					<!-- <div class="  font-medium">{$i18n.t('Advanced Parameters')}</div>
 					<button
 						class=" text-xs font-medium {($settings?.highContrastMode ?? false)
 							? 'text-gray-800 dark:text-gray-100'
@@ -293,7 +293,7 @@
 						on:click={() => {
 							showAdvanced = !showAdvanced;
 						}}>{showAdvanced ? $i18n.t('Hide') : $i18n.t('Show')}</button
-					>
+					> -->
 				</div>
 
 				{#if showAdvanced}

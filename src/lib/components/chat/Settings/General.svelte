@@ -15,7 +15,7 @@
 
 	// General
 	let themes = ['dark', 'light', 'oled-dark'];
-	let selectedTheme = 'system';
+	let selectedTheme = 'light';
 
 	let languages: Awaited<ReturnType<typeof getLanguages>> = [];
 	let lang = $i18n.language;

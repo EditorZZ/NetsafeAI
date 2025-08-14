@@ -88,7 +88,7 @@
 					{#if models[selectedModelIdx]?.name}
 						{models[selectedModelIdx]?.name}
 					{:else}
-						{$i18n.t('Gruezi, {{name}}', { name: $user?.name })}
+						{$i18n.t('Grüezi, {{name}}', { name: $user?.name })}
 					{/if}
 				</div>
 

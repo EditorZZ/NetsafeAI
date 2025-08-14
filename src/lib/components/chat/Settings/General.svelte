@@ -4,7 +4,7 @@
 	import { getLanguages, changeLanguage } from '$lib/i18n';
 	const dispatch = createEventDispatcher();
 
-	import { models, settings, theme, user } from '$lib/stores';
+	import { config, models, settings, theme, user } from '$lib/stores';
 
 	const i18n = getContext('i18n');
 
@@ -42,6 +42,7 @@
 	let params = {
 		// Advanced
 		stream_response: null,
+		stream_delta_chunk_size: null,
 		function_calling: null,
 		seed: null,
 		temperature: null,
@@ -71,6 +72,8 @@
 			system: system !== '' ? system : undefined,
 			params: {
 				stream_response: params.stream_response !== null ? params.stream_response : undefined,
+				stream_delta_chunk_size:
+					params.stream_delta_chunk_size !== null ? params.stream_delta_chunk_size : undefined,
 				function_calling: params.function_calling !== null ? params.function_calling : undefined,
 				seed: (params.seed !== null ? params.seed : undefined) ?? undefined,
 				stop: params.stop ? params.stop.split(',').filter((e) => e) : undefined,
@@ -105,7 +108,7 @@
 	};
 
 	onMount(async () => {
-		selectedTheme = localStorage.theme ?? 'light';
+		selectedTheme = localStorage.theme ?? 'system';
 
 		languages = await getLanguages();
 
@@ -117,7 +120,7 @@
 	});
 
 	const applyTheme = (_theme: string) => {
-		let themeToApply = _theme === 'oled-dark' ? 'dark' : _theme;
+		let themeToApply = _theme === 'oled-dark' ? 'dark' : _theme === 'her' ? 'light' : _theme;
 
 		if (_theme === 'system') {
 			themeToApply = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -190,12 +193,27 @@
 <div class="flex flex-col h-full justify-between text-sm" id="tab-general">
 	<div class="  overflow-y-scroll max-h-[28rem] lg:max-h-full">
 		<div class="">
-			<div class=" mb-1 text-sm font-medium">{$i18n.t('WebUI Settings')}</div>
+			<div class=" mb-1 text-sm font-medium">{$i18n.t('Interface-Settings')}</div>
 
 			<div class="flex w-full justify-between">
-				<!-- <div class=" self-center text-xs font-medium">{$i18n.t('Theme')}</div> -->
+				<div class=" self-center text-xs font-medium">{$i18n.t('Theme')}</div>
 				<div class="flex items-center relative">
-					
+					<select
+						class="dark:bg-gray-900 w-fit pr-8 rounded-sm py-2 px-2 text-xs bg-transparent text-right {$settings.highContrastMode
+							? ''
+							: 'outline-hidden'}"
+						bind:value={selectedTheme}
+						placeholder="Select a theme"
+						on:change={() => themeChangeHandler(selectedTheme)}
+					>
+						<option value="system">⚙️ {$i18n.t('System')}</option>
+						<option value="dark">🌑 {$i18n.t('Dark')}</option>
+						<option value="oled-dark">🌃 {$i18n.t('OLED Dark')}</option>
+						<option value="light">☀️ {$i18n.t('Light')}</option>
+						<option value="her">🌷 Her</option>
+						<!-- <option value="rose-pine dark">🪻 {$i18n.t('Rosé Pine')}</option>
+						<option value="rose-pine-dawn light">🌷 {$i18n.t('Rosé Pine Dawn')}</option> -->
+					</select>
 				</div>
 			</div>
 
@@ -218,17 +236,23 @@
 					</select>
 				</div>
 			</div>
-			{#if $i18n.language === 'en-US'}
-				<!-- <div class="mb-2 text-xs text-gray-400 dark:text-gray-500">
+			{#if $i18n.language === 'en-US' && !($config?.license_metadata ?? false)}
+				<div
+					class="mb-2 text-xs {($settings?.highContrastMode ?? false)
+						? 'text-gray-800 dark:text-gray-100'
+						: 'text-gray-400 dark:text-gray-500'}"
+				>
 					Couldn't find your language?
 					<a
-						class=" text-gray-300 font-medium underline"
+						class="font-medium underline {($settings?.highContrastMode ?? false)
+							? 'text-gray-700 dark:text-gray-200'
+							: 'text-gray-300'}"
 						href="https://github.com/open-webui/open-webui/blob/main/docs/CONTRIBUTING.md#-translations-and-internationalization"
 						target="_blank"
 					>
 						Help us translate Open WebUI!
 					</a>
-				</div> -->
+				</div>
 			{/if}
 
 			<div>
@@ -274,7 +298,9 @@
 				<div class="flex justify-between items-center text-sm">
 					<div class="  font-medium">{$i18n.t('Advanced Parameters')}</div>
 					<button
-						class=" text-xs font-medium text-gray-500"
+						class=" text-xs font-medium {($settings?.highContrastMode ?? false)
+							? 'text-gray-800 dark:text-gray-100'
+							: 'text-gray-400 dark:text-gray-500'}"
 						type="button"
 						on:click={() => {
 							showAdvanced = !showAdvanced;

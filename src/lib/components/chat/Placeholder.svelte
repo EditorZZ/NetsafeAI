@@ -155,7 +155,7 @@
 								</span>
 							</Tooltip>
 						{:else}
-							{$i18n.t('Gruezi, {{name}}', { name: $user?.name })}
+							{$i18n.t('Grüezi, {{name}}', { name: $user?.name })}
 						{/if}
 					</div>
 				</div>

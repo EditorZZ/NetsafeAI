@@ -74,9 +74,9 @@
 			return null;
 		});
 
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
+		toast.success($i18n.t(''));
 
-		const url = 'https://openwebui.com';
+		const url = 'https://netsafe.ch';
 
 		const tab = await window.open(`${url}/functions/create`, '_blank');
 
@@ -563,11 +563,11 @@
 
 {#if $config?.features.enable_community_sharing}
 	<div class=" my-16">
-		<div class=" text-xl font-medium mb-1 line-clamp-1">
-			{$i18n.t('Made by Open WebUI Community')}
-		</div>
+		<!-- <div class=" text-xl font-medium mb-1 line-clamp-1">
+			{$i18n.t('Made by Community')}
+		</div> -->
 
-		<a
+		<!-- <a
 			class=" flex cursor-pointer items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-850 w-full mb-2 px-3.5 py-1.5 rounded-xl transition"
 			href="https://openwebui.com/functions"
 			target="_blank"
@@ -584,7 +584,7 @@
 					<ChevronRight />
 				</div>
 			</div>
-		</a>
+		</a> -->
 	</div>
 {/if}
 

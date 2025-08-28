@@ -563,7 +563,7 @@
 <Modal size="lg" bind:show>
 	<div class="text-gray-700 dark:text-gray-100">
 		<div class=" flex justify-between dark:text-gray-300 px-5 pt-4 pb-1">
-			<div class=" text-lg font-medium self-center">{$i18n.t('Settings')}</div>
+			<div class=" text-lg font-medium self-center">{$i18n.t('UI-Settings')}</div>
 			<button
 				aria-label={$i18n.t('Close settings modal')}
 				class="self-center"
@@ -581,7 +581,7 @@
 				id="settings-tabs-container"
 				class="tabs flex flex-row overflow-x-auto gap-2.5 md:gap-1 md:flex-col flex-1 md:flex-none md:w-40 md:min-h-[32rem] md:max-h-[32rem] dark:text-gray-200 text-sm font-medium text-left mb-1 md:mb-0 -translate-y-1"
 			>
-				<div class="hidden md:flex w-full rounded-xl -mb-1 px-0.5 gap-2" id="settings-search">
+				<!-- <div class="hidden md:flex w-full rounded-xl -mb-1 px-0.5 gap-2" id="settings-search">
 					<div class="self-center rounded-l-xl bg-transparent">
 						<Search
 							className="size-3.5"
@@ -597,7 +597,7 @@
 						on:input={searchDebounceHandler}
 						placeholder={$i18n.t('Search')}
 					/>
-				</div>
+				</div> -->
 				{#if filteredSettings.length > 0}
 					{#each filteredSettings as tabId (tabId)}
 						{#if tabId === 'general'}
@@ -710,7 +710,7 @@
 							{/if}
 						{:else if tabId === 'tools'}
 							{#if $user?.role === 'admin' || ($user?.role === 'user' && $user?.permissions?.features?.direct_tool_servers)}
-								<button
+								<!-- <button
 									role="tab"
 									aria-controls="tab-tools"
 									aria-selected={selectedTab === 'tools'}
@@ -744,7 +744,7 @@
 										</svg>
 									</div>
 									<div class=" self-center">{$i18n.t('Tools')}</div>
-								</button>
+								</button> -->
 							{/if}
 						{:else if tabId === 'personalization'}
 							<button
@@ -768,10 +768,10 @@
 								<div class=" self-center mr-2">
 									<User />
 								</div>
-								<div class=" self-center">{$i18n.t('Personalization')}</div>
+								<div class=" self-center">{$i18n.t('Memory')}</div>
 							</button>
 						{:else if tabId === 'audio'}
-							<button
+							<!-- <button
 								role="tab"
 								aria-controls="tab-audio"
 								aria-selected={selectedTab === 'audio'}
@@ -806,7 +806,7 @@
 									</svg>
 								</div>
 								<div class=" self-center">{$i18n.t('Audio')}</div>
-							</button>
+							</button> -->
 						{:else if tabId === 'chats'}
 							<button
 								role="tab"
@@ -880,7 +880,7 @@
 								<div class=" self-center">{$i18n.t('Account')}</div>
 							</button>
 						{:else if tabId === 'about'}
-							<button
+							<!-- <button
 								role="tab"
 								aria-controls="tab-about"
 								aria-selected={selectedTab === 'about'}
@@ -914,7 +914,7 @@
 									</svg>
 								</div>
 								<div class=" self-center">{$i18n.t('About')}</div>
-							</button>
+							</button> -->
 						{/if}
 					{/each}
 				{:else}
@@ -923,34 +923,7 @@
 					</div>
 				{/if}
 				{#if $user?.role === 'admin'}
-					<a
-						href="/admin/settings"
-						class="px-0.5 py-1 min-w-fit rounded-lg flex-1 md:flex-none md:mt-auto flex text-left transition {$settings?.highContrastMode
-							? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-							: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'}"
-						on:click={async (e) => {
-							e.preventDefault();
-							await goto('/admin/settings');
-							show = false;
-						}}
-					>
-						<div class=" self-center mr-2">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								aria-hidden="true"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-								class="size-4"
-							>
-								<path
-									fill-rule="evenodd"
-									d="M4.5 3.75a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V6.75a3 3 0 0 0-3-3h-15Zm4.125 3a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Zm-3.873 8.703a4.126 4.126 0 0 1 7.746 0 .75.75 0 0 1-.351.92 7.47 7.47 0 0 1-3.522.877 7.47 7.47 0 0 1-3.522-.877.75.75 0 0 1-.351-.92ZM15 8.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15ZM14.25 12a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15Z"
-									clip-rule="evenodd"
-								/>
-							</svg>
-						</div>
-						<div class=" self-center">{$i18n.t('Admin Settings')}</div>
-					</a>
+
 				{/if}
 			</div>
 			<div class="flex-1 md:min-h-[32rem] max-h-[32rem]">

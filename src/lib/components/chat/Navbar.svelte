@@ -112,7 +112,7 @@
 
 					{#if $user?.role === 'user' ? ($user?.permissions?.chat?.temporary ?? true) && !($user?.permissions?.chat?.temporary_enforced ?? false) : true}
 						{#if !chat?.id}
-							<Tooltip content={$i18n.t(`Temporary Chat`)}>
+							<!-- <Tooltip content={$i18n.t(`Temporary Chat`)}>
 								<button
 									class="flex cursor-pointer px-2 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 									id="temporary-chat-button"
@@ -142,9 +142,9 @@
 										{/if}
 									</div>
 								</button>
-							</Tooltip>
+							</Tooltip> -->
 						{:else if $temporaryChatEnabled}
-							<Tooltip content={$i18n.t(`Save Chat`)}>
+							<!-- <Tooltip content={$i18n.t(`Save Chat`)}>
 								<button
 									class="flex cursor-pointer px-2 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 									id="save-temporary-chat-button"
@@ -156,12 +156,12 @@
 										<ChatPlus className=" size-4.5" strokeWidth="1.5" />
 									</div>
 								</button>
-							</Tooltip>
+							</Tooltip> -->
 						{/if}
 					{/if}
 
 					{#if shareEnabled && chat && (chat.id || $temporaryChatEnabled)}
-						<Menu
+						<!-- <Menu
 							{chat}
 							{shareEnabled}
 							shareHandler={() => {
@@ -180,11 +180,11 @@
 									<EllipsisHorizontal className=" size-5" strokeWidth="1.5" />
 								</div>
 							</button>
-						</Menu>
+						</Menu> -->
 					{/if}
 
 					{#if $user?.role === 'admin' || ($user?.permissions.chat?.controls ?? true)}
-						<Tooltip content={$i18n.t('Controls')}>
+						<!-- <Tooltip content={$i18n.t('Controls')}>
 							<button
 								class=" flex cursor-pointer px-2 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 								on:click={async () => {
@@ -196,7 +196,7 @@
 									<AdjustmentsHorizontal className=" size-5" strokeWidth="1" />
 								</div>
 							</button>
-						</Tooltip>
+						</Tooltip> -->
 					{/if}
 
 					{#if $mobile}
@@ -231,15 +231,26 @@
 							<div
 								class="select-none flex rounded-xl p-1.5 w-full hover:bg-gray-50 dark:hover:bg-gray-850 transition"
 							>
-								<div class=" self-center">
-									<span class="sr-only">{$i18n.t('User menu')}</span>
-									<img
-										src={$user?.profile_image_url}
-										class="size-6 object-cover rounded-full"
-										alt=""
-										draggable="false"
-									/>
-								</div>
+								<div class="self-center">
+							<button 
+							type="button"
+							class="font-ui flex items-center gap-2 px-6 py-2 rounded-full
+									backdrop-blur-md shadow-lg border transition
+									bg-white/60 hover:bg-white/70
+									dark:bg-white/15 dark:hover:bg-white/25
+									text-gray-900 dark:text-white
+									border-black/10 dark:border-white/20"
+							>
+							<img
+								src={$user?.profile_image_url}
+								class="w-6 h-6 object-cover rounded-full"
+								alt=""
+								draggable="false"
+							/>
+							Profil
+							</button>
+							</div>
+
 							</div>
 						</UserMenu>
 					{/if}

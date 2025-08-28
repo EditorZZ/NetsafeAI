@@ -126,7 +126,7 @@
 	};
 
 	const shareHandler = async () => {
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
+		toast.success($i18n.t('Redirecting you to NetsafeAI Community'));
 
 		// remove snapshot from feedbacks
 		const feedbacksToShare = feedbacks.map((f) => {
@@ -412,9 +412,9 @@
 						shareHandler();
 					}}
 				>
-					<div class=" self-center mr-2 font-medium line-clamp-1">
-						{$i18n.t('Share to Open WebUI Community')}
-					</div>
+					<!-- <div class=" self-center mr-2 font-medium line-clamp-1">
+						{$i18n.t('Share to Community')}
+					</div> -->
 
 					<div class=" self-center">
 						<CloudArrowUp className="size-3" strokeWidth="3" />

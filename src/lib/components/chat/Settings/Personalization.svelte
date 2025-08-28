@@ -41,7 +41,7 @@
 					<div class="text-sm font-medium">
 						{$i18n.t('Memory')}
 
-						<span class=" text-xs text-gray-500">({$i18n.t('Experimental')})</span>
+						<span class=" text-xs text-gray-500">({$i18n.t('Beta')})</span>
 					</div>
 				</Tooltip>
 
@@ -63,14 +63,14 @@
 				)}
 			</div>
 
-			<!-- <div class="mt-3">
+			<div class="mt-3">
 				To understand what LLM remembers or teach it something new, just chat with it:
 
 				<div>- “Remember that I like concise responses.”</div>
 				<div>- “I just got a puppy!”</div>
 				<div>- “What do you remember about me?”</div>
 				<div>- “Where did we leave off on my last project?”</div>
-			</div> -->
+			</div>
 		</div>
 
 		<div class="mt-3 mb-1 ml-1">

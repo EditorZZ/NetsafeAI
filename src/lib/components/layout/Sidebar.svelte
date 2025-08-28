@@ -38,7 +38,10 @@
 		toggleChatPinnedStatusById,
 		getChatById,
 		updateChatFolderIdById,
-		importChat
+		importChat,
+
+		archiveAllChats
+
 	} from '$lib/apis/chats';
 	import { createNewFolder, getFolders, updateFolderParentIdById } from '$lib/apis/folders';
 	import { WEBUI_BASE_URL } from '$lib/constants';
@@ -511,9 +514,16 @@
 
 {#if !$mobile && !$showSidebar}
 	<div
-		class=" py-2 px-1.5 flex flex-col justify-between text-black dark:text-white h-full border-e border-gray-50 dark:border-gray-850 z-10"
+		class="relative py-2 px-1.5 flex flex-col justify-between h-full z-10
+         text-gray-900 dark:text-white
+         backdrop-blur-xl backdrop-saturate-150
+         bg-white/55 dark:bg-white/10
+         border-r border-white/50 dark:border-white/10
+         ring-1 ring-black/5 dark:ring-white/5
+         shadow-[0_15px_35px_-10px_rgba(0,0,0,0.35)]
+         [box-shadow:inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.10)]"
 		id="sidebar"
-	>
+		>
 		<button
 			class="flex flex-col flex-1 cursor-[e-resize]"
 			on:click={async () => {
@@ -529,12 +539,12 @@
 						class=" flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition group cursor-[e-resize]"
 					>
 						<div class=" self-center flex items-center justify-center size-9">
-							<img
+							<!-- <img
 								crossorigin="anonymous"
 								src="{WEBUI_BASE_URL}/static/favicon.png"
 								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
 								alt=""
-							/>
+							/> -->
 
 							<Sidebar className="size-5 hidden group-hover:flex" />
 						</div>
@@ -544,6 +554,26 @@
 
 			<div>
 				<div class="">
+					<div class="btn-group-vertical" role="group" aria-label="">
+						<button type="button" class="btn btn-secondary">First One</button>
+						<button type="button" class="btn btn-secondary">Second One</button>
+						<div class="btn-group" role="group">
+							<button
+								id="dropdownId"
+								type="button"
+								class="btn btn-secondary dropdown-toggle"
+								data-bs-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+							>
+								More
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownId">
+								<a class="dropdown-item" href="#">First Dropdown</a>
+								<a class="dropdown-item" href="#">Second Dropdown</a>
+							</div>
+						</div>
+					</div>
 					<Tooltip content={$i18n.t('New Chat')} placement="right">
 						<a
 							class=" cursor-pointer flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition group"
@@ -608,7 +638,7 @@
 
 				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.models || $user?.permissions?.workspace?.knowledge || $user?.permissions?.workspace?.prompts || $user?.permissions?.workspace?.tools}
 					<div class="">
-						<Tooltip content={$i18n.t('Workspace')} placement="right">
+						<!-- <Tooltip content={$i18n.t('Workspace')} placement="right">
 							<a
 								class=" cursor-pointer flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition group"
 								href="/workspace"
@@ -638,7 +668,7 @@
 									</svg>
 								</div>
 							</a>
-						</Tooltip>
+						</Tooltip> -->
 					</div>
 				{/if}
 			</div>
@@ -705,15 +735,15 @@
 				>
 					<img
 						crossorigin="anonymous"
-						src="{WEBUI_BASE_URL}/static/favicon.png"
-						class="sidebar-new-chat-icon size-6 rounded-full"
+						src="../static/logo.png"
+						class="sidebar-new-chat-icon size-7 rounded-full"
 						alt=""
 					/>
 				</a>
 
 				<a href="/" class="flex flex-1 px-1.5" on:click={newChatHandler}>
 					<div class=" self-center font-medium text-gray-850 dark:text-white font-primary">
-						{$WEBUI_NAME}
+						NetsafeAI
 					</div>
 				</a>
 				<Tooltip
@@ -743,7 +773,7 @@
 						on:click={newChatHandler}
 					>
 						<div class="self-center">
-							<PencilSquare className=" size-4.5" strokeWidth="2" />
+							<Note className=" size-4.5" strokeWidth="2" />
 						</div>
 
 						<div class="flex self-center translate-y-[0.5px]">
@@ -752,7 +782,7 @@
 					</a>
 				</div>
 
-				<div class="px-[7px] flex justify-center text-gray-800 dark:text-gray-200">
+				<!-- <div class="px-[7px] flex justify-center text-gray-800 dark:text-gray-200">
 					<button
 						class="grow flex items-center space-x-3 rounded-lg px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition outline-none"
 						on:click={() => {
@@ -768,9 +798,9 @@
 							<div class=" self-center text-sm font-primary">{$i18n.t('Search')}</div>
 						</div>
 					</button>
-				</div>
+				</div> -->
 
-				{#if ($config?.features?.enable_notes ?? false) && ($user?.role === 'admin' || ($user?.permissions?.features?.notes ?? true))}
+				<!-- {#if ($config?.features?.enable_notes ?? false) && ($user?.role === 'admin' || ($user?.permissions?.features?.notes ?? true))}
 					<div class="px-[7px] flex justify-center text-gray-800 dark:text-gray-200">
 						<a
 							class="grow flex items-center space-x-3 rounded-lg px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition"
@@ -787,9 +817,9 @@
 							</div>
 						</a>
 					</div>
-				{/if}
+				{/if} -->
 
-				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.models || $user?.permissions?.workspace?.knowledge || $user?.permissions?.workspace?.prompts || $user?.permissions?.workspace?.tools}
+				<!-- {#if $user?.role === 'admin' || $user?.permissions?.workspace?.models || $user?.permissions?.workspace?.knowledge || $user?.permissions?.workspace?.prompts || $user?.permissions?.workspace?.tools}
 					<div class="px-[7px] flex justify-center text-gray-800 dark:text-gray-200">
 						<a
 							class="grow flex items-center space-x-3 rounded-lg px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition"
@@ -819,7 +849,7 @@
 							</div>
 						</a>
 					</div>
-				{/if}
+				{/if} -->
 			</div>
 
 			<div class="relative flex flex-col flex-1">
@@ -1114,7 +1144,7 @@
 			<div class="px-1.5 pt-1.5 pb-2 sticky bottom-0 z-10 bg-gray-50 dark:bg-gray-950 sidebar">
 				<div class="flex flex-col font-primary">
 					{#if $user !== undefined && $user !== null}
-						<UserMenu
+						<!-- <UserMenu
 							role={$user?.role}
 							on:show={(e) => {
 								if (e.detail === 'archived-chat') {
@@ -1135,7 +1165,7 @@
 								</div>
 								<div class=" self-center font-medium">{$user?.name}</div>
 							</div>
-						</UserMenu>
+						</UserMenu> -->
 					{/if}
 				</div>
 			</div>

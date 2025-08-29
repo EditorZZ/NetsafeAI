@@ -194,7 +194,7 @@
 							class="flex items-center justify-center gap-3 text-xl sm:text-2xl text-center font-semibold dark:text-gray-200"
 						>
 							<div>
-								{$i18n.t('Signing in to {{WEBUI_NAME}}', { WEBUI_NAME: $WEBUI_NAME })}
+								{$i18n.t('Signing in to NetsafeAI', { WEBUI_NAME: $WEBUI_NAME })}
 							</div>
 
 							<div>

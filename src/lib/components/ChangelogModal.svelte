@@ -44,17 +44,17 @@
 				</XMark>
 			</button>
 		</div>
-		<div class="flex items-center mt-1">
+		<!-- <div class="flex items-center mt-1">
 			<div class="text-sm dark:text-gray-200">{$i18n.t('Release Notes')}</div>
 			<div class="flex self-center w-[1px] h-6 mx-2.5 bg-gray-200 dark:bg-gray-700" />
 			<div class="text-sm dark:text-gray-200">
 				v{WEBUI_VERSION}
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	<div class=" w-full p-4 px-5 text-gray-700 dark:text-gray-100">
-		<div class=" overflow-y-scroll max-h-96 scrollbar-hidden">
+		<!-- <div class=" overflow-y-scroll max-h-96 scrollbar-hidden">
 			<div class="mb-3">
 				{#if changelog}
 					{#each Object.keys(changelog) as version}
@@ -97,7 +97,7 @@
 					{/each}
 				{/if}
 			</div>
-		</div>
+		</div> -->
 		<div class="flex justify-end pt-3 text-sm font-medium">
 			<button
 				on:click={async () => {

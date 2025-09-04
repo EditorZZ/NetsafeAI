@@ -102,7 +102,7 @@
 <div class="mb-1 flex gap-1 text-xs font-medium items-center text-gray-600 dark:text-gray-400">
 	{#if filteredPrompts.length > 0}
 		<Bolt />
-		{$i18n.t('Suggested')}
+		{$i18n.t('Vorschläge')}
 	{:else}
 		<!-- Keine Vorschläge -->
 
@@ -146,7 +146,7 @@
 								{prompt.content}
 							</div>
 							<div class="text-xs text-gray-600 dark:text-gray-400 font-normal line-clamp-1">
-								{$i18n.t('Prompt')}
+								{$i18n.t('Hier steht dein Beispiel Prompt')}
 							</div>
 						{/if}
 					</div>

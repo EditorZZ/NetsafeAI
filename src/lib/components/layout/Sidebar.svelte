@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
 	import { v4 as uuidv4 } from 'uuid';
+	import { assets } from '$app/paths';
 
 	import { goto } from '$app/navigation';
 	import {
@@ -539,12 +540,12 @@
 						class=" flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition group cursor-[e-resize]"
 					>
 						<div class=" self-center flex items-center justify-center size-9">
-							<!-- <img
+							<img
 								crossorigin="anonymous"
-								src="{WEBUI_BASE_URL}/static/favicon.png"
+								src="../static/favicon.png"
 								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
 								alt=""
-							/> -->
+							/>
 
 							<Sidebar className="size-5 hidden group-hover:flex" />
 						</div>
@@ -554,26 +555,6 @@
 
 			<div>
 				<div class="">
-					<div class="btn-group-vertical" role="group" aria-label="">
-						<button type="button" class="btn btn-secondary">First One</button>
-						<button type="button" class="btn btn-secondary">Second One</button>
-						<div class="btn-group" role="group">
-							<button
-								id="dropdownId"
-								type="button"
-								class="btn btn-secondary dropdown-toggle"
-								data-bs-toggle="dropdown"
-								aria-haspopup="true"
-								aria-expanded="false"
-							>
-								More
-							</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item" href="#">First Dropdown</a>
-								<a class="dropdown-item" href="#">Second Dropdown</a>
-							</div>
-						</div>
-					</div>
 					<Tooltip content={$i18n.t('New Chat')} placement="right">
 						<a
 							class=" cursor-pointer flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition group"
@@ -781,75 +762,6 @@
 						</div>
 					</a>
 				</div>
-
-				<!-- <div class="px-[7px] flex justify-center text-gray-800 dark:text-gray-200">
-					<button
-						class="grow flex items-center space-x-3 rounded-lg px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition outline-none"
-						on:click={() => {
-							showSearch.set(true);
-						}}
-						draggable="false"
-					>
-						<div class="self-center">
-							<Search strokeWidth="2" className="size-4.5" />
-						</div>
-
-						<div class="flex self-center translate-y-[0.5px]">
-							<div class=" self-center text-sm font-primary">{$i18n.t('Search')}</div>
-						</div>
-					</button>
-				</div> -->
-
-				<!-- {#if ($config?.features?.enable_notes ?? false) && ($user?.role === 'admin' || ($user?.permissions?.features?.notes ?? true))}
-					<div class="px-[7px] flex justify-center text-gray-800 dark:text-gray-200">
-						<a
-							class="grow flex items-center space-x-3 rounded-lg px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-							href="/notes"
-							on:click={itemClickHandler}
-							draggable="false"
-						>
-							<div class="self-center">
-								<Note className="size-4.5" strokeWidth="2" />
-							</div>
-
-							<div class="flex self-center translate-y-[0.5px]">
-								<div class=" self-center text-sm font-primary">{$i18n.t('Notes')}</div>
-							</div>
-						</a>
-					</div>
-				{/if} -->
-
-				<!-- {#if $user?.role === 'admin' || $user?.permissions?.workspace?.models || $user?.permissions?.workspace?.knowledge || $user?.permissions?.workspace?.prompts || $user?.permissions?.workspace?.tools}
-					<div class="px-[7px] flex justify-center text-gray-800 dark:text-gray-200">
-						<a
-							class="grow flex items-center space-x-3 rounded-lg px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-							href="/workspace"
-							on:click={itemClickHandler}
-							draggable="false"
-						>
-							<div class="self-center">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									fill="none"
-									viewBox="0 0 24 24"
-									stroke-width="2"
-									stroke="currentColor"
-									class="size-4.5"
-								>
-									<path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-									/>
-								</svg>
-							</div>
-
-							<div class="flex self-center translate-y-[0.5px]">
-								<div class=" self-center text-sm font-primary">{$i18n.t('Workspace')}</div>
-							</div>
-						</a>
-					</div>
-				{/if} -->
 			</div>
 
 			<div class="relative flex flex-col flex-1">

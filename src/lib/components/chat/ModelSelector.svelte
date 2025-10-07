@@ -69,7 +69,7 @@
 					<div
 						class="  self-center mx-1 disabled:text-gray-600 disabled:hover:text-gray-600 -translate-y-[0.5px]"
 					>
-						<Tooltip content={$i18n.t('Add Model')}>
+						<!-- <Tooltip content={$i18n.t('Add Model')}>
 							<button
 								class=" "
 								{disabled}
@@ -89,7 +89,7 @@
 									<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
 								</svg>
 							</button>
-						</Tooltip>
+						</Tooltip> -->
 					</div>
 				{:else}
 					<div

@@ -47,6 +47,7 @@ logging.getLogger("uvicorn.access").addFilter(EndpointFilter())
 ####################################
 # Config helpers
 ####################################
+WEBUI_NAME: str = os.getenv("WEBUI_NAME", "NetsafeAI")
 
 
 # Function to run the alembic migrations

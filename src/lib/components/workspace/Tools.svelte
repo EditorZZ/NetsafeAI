@@ -75,9 +75,9 @@
 			return null;
 		});
 
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
+		toast.success($i18n.t(''));
 
-		const url = 'https://openwebui.com';
+		const url = '';
 
 		const tab = await window.open(`${url}/tools/create`, '_blank');
 
@@ -488,7 +488,7 @@
 		</div>
 	{/if}
 
-	{#if $config?.features.enable_community_sharing}
+	<!-- {#if $config?.features.enable_community_sharing}
 		<div class=" my-16">
 			<div class=" text-xl font-medium mb-1 line-clamp-1">
 				{$i18n.t('Made by Open WebUI Community')}
@@ -513,7 +513,7 @@
 				</div>
 			</a>
 		</div>
-	{/if}
+	{/if} -->
 
 	<DeleteConfirmDialog
 		bind:show={showDeleteConfirm}

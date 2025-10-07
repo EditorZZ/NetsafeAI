@@ -737,7 +737,7 @@
 								<div class=" self-center">{$i18n.t('Personalization')}</div>
 							</button>
 						{:else if tabId === 'audio'}
-							<button
+							<!-- <button
 								role="tab"
 								aria-controls="tab-audio"
 								aria-selected={selectedTab === 'audio'}
@@ -759,7 +759,7 @@
 									<SoundHigh strokeWidth="2" />
 								</div>
 								<div class=" self-center">{$i18n.t('Audio')}</div>
-							</button>
+							</button> -->
 						{:else if tabId === 'data_controls'}
 							<button
 								role="tab"
@@ -782,7 +782,7 @@
 								<div class=" self-center mr-2">
 									<DatabaseSettings strokeWidth="2" />
 								</div>
-								<div class=" self-center">{$i18n.t('Data Controls')}</div>
+								<div class=" self-center">{$i18n.t('Chat History')}</div>
 							</button>
 						{:else if tabId === 'account'}
 							<button
@@ -809,7 +809,7 @@
 								<div class=" self-center">{$i18n.t('Account')}</div>
 							</button>
 						{:else if tabId === 'about'}
-							<button
+							<!-- <button
 								role="tab"
 								aria-controls="tab-about"
 								aria-selected={selectedTab === 'about'}
@@ -831,7 +831,7 @@
 									<InfoCircle strokeWidth="2" />
 								</div>
 								<div class=" self-center">{$i18n.t('About')}</div>
-							</button>
+							</button> -->
 						{/if}
 					{/each}
 				{:else}

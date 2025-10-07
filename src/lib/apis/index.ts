@@ -625,35 +625,33 @@ export const generateTitle = async (
 	}
 
 	try {
-		// Step 1: Safely extract the response string
+		// 1. Modellantwort extrahieren
 		const response = res?.choices[0]?.message?.content ?? '';
 
-		// Step 2: Attempt to fix common JSON format issues like single quotes
-		const sanitizedResponse = response.replace(/['‘’`]/g, '"'); // Convert single quotes to double quotes for valid JSON
-
-		// Step 3: Find the relevant JSON block within the response
+		// 2. JSON block suchen
+		const sanitizedResponse = response.replace(/['‘’`]/g, '"');
 		const jsonStartIndex = sanitizedResponse.indexOf('{');
 		const jsonEndIndex = sanitizedResponse.lastIndexOf('}');
 
-		// Step 4: Check if we found a valid JSON block (with both `{` and `}`)
 		if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
 			const jsonResponse = sanitizedResponse.substring(jsonStartIndex, jsonEndIndex + 1);
-
-			// Step 5: Parse the JSON block
 			const parsed = JSON.parse(jsonResponse);
 
-			// Step 6: If there's a "tags" key, return the tags array; otherwise, return an empty array
 			if (parsed && parsed.title) {
-				return parsed.title;
+				// 3. Emojis aus dem Titel entfernen
+				const cleanTitle = parsed.title
+					.replace(/[\p{Emoji_Presentation}\p{Extended_Pictographic}]/gu, '')
+					.replace(/\s{2,}/g, ' ')
+					.trim();
+
+				return cleanTitle;
 			} else {
 				return null;
 			}
 		}
 
-		// If no valid JSON block found, return an empty array
 		return null;
 	} catch (e) {
-		// Catch and safely return empty array on any parsing errors
 		console.error('Failed to parse response: ', e);
 		return null;
 	}

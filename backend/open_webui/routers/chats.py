@@ -424,9 +424,7 @@ async def export_chat_stats(
     user=Depends(get_verified_user),
 ):
     # Check if the user has permission to share/export chats
-    if (user.role != "admin") and (
-        not request.app.state.config.ENABLE_COMMUNITY_SHARING
-    ):
+    if not request.app.state.config.ENABLE_COMMUNITY_SHARING:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=ERROR_MESSAGES.ACCESS_PROHIBITED,
@@ -483,9 +481,7 @@ async def export_single_chat_stats(
     Returns ChatStatsExport for the specified chat.
     """
     # Check if the user has permission to share/export chats
-    if (user.role != "admin") and (
-        not request.app.state.config.ENABLE_COMMUNITY_SHARING
-    ):
+    if not request.app.state.config.ENABLE_COMMUNITY_SHARING:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail=ERROR_MESSAGES.ACCESS_PROHIBITED,

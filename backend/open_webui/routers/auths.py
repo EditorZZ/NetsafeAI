@@ -1084,9 +1084,7 @@ async def update_admin_config(
     if re.match(pattern, form_data.JWT_EXPIRES_IN):
         request.app.state.config.JWT_EXPIRES_IN = form_data.JWT_EXPIRES_IN
 
-    request.app.state.config.ENABLE_COMMUNITY_SHARING = (
-        form_data.ENABLE_COMMUNITY_SHARING
-    )
+    request.app.state.config.ENABLE_COMMUNITY_SHARING = False
     request.app.state.config.ENABLE_MESSAGE_RATING = form_data.ENABLE_MESSAGE_RATING
 
     request.app.state.config.ENABLE_USER_WEBHOOKS = form_data.ENABLE_USER_WEBHOOKS
